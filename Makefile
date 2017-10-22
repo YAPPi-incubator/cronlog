@@ -12,10 +12,10 @@ help: ## prints this help
 
 project-start: ## @main run all containers in background
 	@make project-stop
-	@php -S 127.0.0.1:8080 index.php &
+	@sudo docker-compose up
 
 project-stop: ## @main stop and remove all containers running in background
-	@kill -9 `pgrep -a php|grep "127.0.0.1:8080 index.php"|awk '{print $$1}'` || true
+	@sudo docker-compose down
 
 tests: project-start behat ## @main run all tests
 
