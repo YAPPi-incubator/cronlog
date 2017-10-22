@@ -12,17 +12,18 @@ help: ## prints this help
 
 project-start: ## @main run all containers in background
 	@make project-stop
-	@sudo docker-compose up
+	@sudo docker-compose up &
 
 project-stop: ## @main stop and remove all containers running in background
 	@sudo docker-compose down
 
-tests: project-start behat ## @main run all tests
+tests: behat ## @main run all tests
 
-behat: behat-domain behat-e2e project-stop ## run all types of behat tests
+behat: behat-domain behat-e2e ## run all types of behat tests
 
-behat-domain: project-start ## run "domain" part of behat tests
-	@./vendor/bin/behat --colors -vvv --tags=~e2e
+behat-domain: ## run "domain" part of behat tests
+	@sudo docker-compose exec app /bin/bash -c "cd /app && ./vendor/bin/behat --colors -vvv --tags=~e2e" 
 
-behat-e2e: project-start ## run "e2e" part of behat tests
-	@./vendor/bin/behat --colors -vvv --tags=e2e
+behat-e2e: ## run "e2e" part of behat tests
+	@sudo docker-compose exec app /bin/bash -c "cd /app && ./vendor/bin/behat --colors -vvv --tags=e2e"
+
