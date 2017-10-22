@@ -12,7 +12,7 @@ help: ## prints this help
 
 project-start: ## @main run all containers in background
 	@make project-stop
-	@sudo docker-compose up &
+	@sudo docker-compose up -d
 
 project-stop: ## @main stop and remove all containers running in background
 	@sudo docker-compose down
