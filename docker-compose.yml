@@ -15,7 +15,7 @@ app:
   volumes:
     - .:/app:z
 composer:
-  image: composer/composer:php7
+  image: composer:1.5.2
   command: install
   volumes:
     - .:/app:z
