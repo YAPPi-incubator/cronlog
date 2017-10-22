@@ -11,13 +11,16 @@ help: ## prints this help
 	@echo
 
 project-start: ## @main run all containers in background
-	@make project-stop
 	@sudo docker-compose up -d
 
 project-stop: ## @main stop and remove all containers running in background
 	@sudo docker-compose down
 
-tests: behat ## @main run all tests
+project-restart: ## @main stop and start all containers
+	@sudo docker-compose down
+	@sudo docker-compose up -d
+
+tests: project-start behat ## @main run all tests
 
 behat: behat-domain behat-e2e ## run all types of behat tests
 

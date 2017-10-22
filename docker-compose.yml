@@ -19,4 +19,3 @@ composer:
   command: install
   volumes:
     - .:/app:z
-
