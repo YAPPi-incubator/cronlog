@@ -11,10 +11,10 @@ help: ## prints this help
 	@echo
 
 project-start: ## @main run all containers in background
-	@sudo docker-compose up -d
+	@docker-compose up -d
 
 project-stop: ## @main stop and remove all containers running in background
-	@sudo docker-compose down
+	@docker-compose down
 
 project-restart: ## @main stop and start all containers
 	@make project-stop
@@ -25,8 +25,8 @@ tests: project-start behat ## @main run all tests
 behat: behat-domain behat-e2e ## run all types of behat tests
 
 behat-domain: ## run "domain" part of behat tests
-	@sudo docker-compose exec app /bin/bash -c "cd /app && ./vendor/bin/behat --colors -vvv --tags=~e2e" 
+	@docker-compose exec app /bin/bash -c "cd /app && ./vendor/bin/behat --colors -vvv --tags=~e2e" 
 
 behat-e2e: ## run "e2e" part of behat tests
-	@sudo docker-compose exec app /bin/bash -c "cd /app && ./vendor/bin/behat --colors -vvv --tags=e2e"
+	@docker-compose exec app /bin/bash -c "cd /app && ./vendor/bin/behat --colors -vvv --tags=e2e"
 
