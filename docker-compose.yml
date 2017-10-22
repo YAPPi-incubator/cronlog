@@ -13,10 +13,10 @@ app:
   ports:
     - "8080:8080"
   volumes:
-    - .:/app
+    - .:/app:z
 composer:
   image: composer/composer:php7
   command: install
   volumes:
-    - .:/app
+    - .:/app:z
 
