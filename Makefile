@@ -17,8 +17,8 @@ project-stop: ## @main stop and remove all containers running in background
 	@sudo docker-compose down
 
 project-restart: ## @main stop and start all containers
-	@sudo docker-compose down
-	@sudo docker-compose up -d
+	@make project-stop
+	@make project-start
 
 tests: project-start behat ## @main run all tests
 
