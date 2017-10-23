@@ -20,6 +20,17 @@ project-restart: ## @main stop and start all containers
 	@make project-stop
 	@make project-start
 
+database-migrate: ## @main run all database migrations
+	@docker-compose exec app bash -c "./vendor/bin/phinx --ansi -vvv migrate" || true
+	@make database-status
+
+database-status: ## @main show migrations status
+	@docker-compose exec app bash -c "./vendor/bin/phinx --ansi -vvv status" || true
+
+database-rollback: ## @main rollback last database migration
+	@docker-compose exec app bash -c "./vendor/bin/phinx --ansi -vvv rollback" || true
+	@make database-status
+
 tests: project-start behat ## @main run all tests
 
 behat: behat-domain behat-e2e ## run all types of behat tests

@@ -8,7 +8,7 @@ environments:
 
     development:
         adapter: mysql
-        host: 127.0.0.1
+        host: db
         name: cronlog
         user: root
         pass: 'dorootpasswd'
